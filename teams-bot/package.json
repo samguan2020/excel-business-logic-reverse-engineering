@@ -1,0 +1,27 @@
+{
+  "name": "finance-excel-reverse-engineering-teams-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Microsoft Teams bot for finance workbook reverse engineering. Accepts an .xlsx upload, calls an asynchronous analysis API, and returns an Adaptive Card summary and a markdown report through file consent.",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsup src/index.ts --format cjs --out-dir dist",
+    "start": "node dist/index.js",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@microsoft/teams.apps": "2.0.5",
+    "@microsoft/teams.cards": "2.0.5",
+    "axios": "^1.7.9",
+    "dotenv": "^17.4.2",
+    "form-data": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "rimraf": "^6.0.1",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

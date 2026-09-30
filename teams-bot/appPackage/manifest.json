@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.20/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.20",
+  "version": "2.0.0",
+  "id": "${{TEAMS_APP_ID}}",
+  "developer": {
+    "name": "${{DEVELOPER_NAME}}",
+    "websiteUrl": "${{WEBSITE_URL}}",
+    "privacyUrl": "${{PRIVACY_URL}}",
+    "termsOfUseUrl": "${{TERMS_OF_USE_URL}}"
+  },
+  "name": {
+    "short": "Finance Workbook Analyst",
+    "full": "Finance Excel Reverse Engineering"
+  },
+  "description": {
+    "short": "Reverse-engineers Excel business logic into readable docs.",
+    "full": "Upload an .xlsx workbook in a personal chat to generate business-logic documentation, dependency analysis, and migration recommendations. Review the summary and choose whether to receive the full markdown report."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#6264A7",
+  "bots": [
+    {
+      "botId": "${{BOT_ID}}",
+      "scopes": ["personal"],
+      "supportsFiles": true,
+      "isNotificationOnly": false
+    }
+  ],
+  "permissions": ["identity", "messageTeamMembers"],
+  "validDomains": ["${{BOT_DOMAIN}}"]
+}
