@@ -21,7 +21,7 @@ Generated explanations, requirements, and code require human review.
 
 ## Showcase
 
-Read the case study: **[samguan2020.github.io/finance-excel-reverse-engineering](https://samguan2020.github.io/finance-excel-reverse-engineering/)**
+Read the case study: **[samguan2020.github.io/excel-business-logic-reverse-engineering](https://samguan2020.github.io/excel-business-logic-reverse-engineering/)**
 
 The page source is [`docs/index.html`](docs/index.html), served by GitHub Pages.
 
