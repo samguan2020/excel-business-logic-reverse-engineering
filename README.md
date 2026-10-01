@@ -19,6 +19,12 @@ This is an independent experimental prototype, not an official Microsoft
 implementation, a financial calculation engine, or a production migration tool.
 Generated explanations, requirements, and code require human review.
 
+## Showcase
+
+Read the case study: **[samguan2020.github.io/finance-excel-reverse-engineering](https://samguan2020.github.io/finance-excel-reverse-engineering/)**
+
+The page source is [`docs/index.html`](docs/index.html), served by GitHub Pages.
+
 ## Microsoft IQ and the replacement architecture
 
 [Microsoft IQ](https://learn.microsoft.com/en-us/microsoft-iq/) describes an

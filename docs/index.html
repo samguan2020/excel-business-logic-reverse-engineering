@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Finance Excel Reverse Engineering: an open-source substitute for selected Microsoft IQ capabilities, applied to spreadsheet documentation and migration drafting.">
+<title>Finance Excel Reverse Engineering Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#eef0f5; --surface:#ffffff; --surface-2:#e3e6ef; --ink:#151a2c; --muted:#565d78; --line:#cfd4e2;
+  --gold:#a8790c; --blue:#2c58c9; --red:#b8322f; --green:#2f8a4e;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0f1220; --surface:#171b2c; --surface-2:#1f2438; --ink:#e8eaf3; --muted:#9aa1bb; --line:#2c3250;
+    --gold:#e3b544; --blue:#7c9df5; --red:#ec7270; --green:#63c083;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0f1220; --surface:#171b2c; --surface-2:#1f2438; --ink:#e8eaf3; --muted:#9aa1bb; --line:#2c3250;
+  --gold:#e3b544; --blue:#7c9df5; --red:#ec7270; --green:#63c083;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px;padding-block:40px 72px}
+a{color:var(--blue);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+h2{font-size:clamp(26px,3.4vw,34px);font-weight:800;letter-spacing:-.01em}
+h3{font-size:19px;font-weight:700}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+code,.mono{font-family:var(--mono);font-size:.86em}
+code{background:var(--surface-2);padding:1px 6px;border-radius:4px}
+
+.hero{padding-bottom:40px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:clamp(30px,5vw,46px);font-weight:800;letter-spacing:-.02em;margin-top:14px}
+.thesis{font-size:21px;line-height:1.5;margin-top:20px;max-width:66ch}
+.thesis strong{color:var(--blue)}
+.callout{margin-top:18px;max-width:66ch;font-size:14.5px;color:var(--muted);border-left:3px solid var(--gold);padding:4px 0 4px 14px}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;padding:10px 14px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none}
+.btn:hover{border-color:var(--blue)}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+:root:not([data-theme="light"]) .btn.primary{color:#fff}
+
+section{padding-top:64px}
+.lede{color:var(--muted);max-width:68ch;margin-top:12px}
+.sec-head{display:flex;flex-direction:column;gap:8px}
+
+.map{margin-top:28px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface);overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
+th,td{padding:12px 14px;text-align:left;border-top:1px solid var(--line);vertical-align:top}
+thead th{border-top:none;color:var(--muted);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em}
+td.layer{font-weight:600;white-space:nowrap}
+td.boundary{color:var(--muted);font-size:13px}
+
+.pipeline{margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;counter-reset:s}
+.pipe{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:6px;counter-increment:s}
+.pipe::before{content:counter(s);font-family:var(--mono);font-size:12px;color:var(--blue);font-weight:600}
+.pipe h3{font-size:16px}
+.pipe p{font-size:14px;color:var(--muted);line-height:1.45}
+
+.lessons{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.lesson{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.lesson .sym{font-family:var(--mono);font-size:12px;color:var(--blue);letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.lesson p{font-size:15.5px}
+
+.limits{margin-top:20px;display:flex;flex-direction:column;gap:10px}
+.limit{display:flex;gap:10px;align-items:flex-start}
+.limit .dot{width:6px;height:6px;border-radius:50%;background:var(--red);margin-top:8px;flex-shrink:0}
+.limit p{font-size:14.5px;color:var(--muted)}
+
+.foot{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 24px}
+
+@media (max-width:860px){
+  .pipeline{grid-template-columns:1fr 1fr}
+  .lessons{grid-template-columns:1fr}
+}
+@media (max-width:480px){
+  body{font-size:16px}
+  .pipeline{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Case study · Reverse-engineering an enterprise AI platform</div>
+  <h1>Finance Excel Reverse Engineering</h1>
+  <p class="thesis">Microsoft IQ describes an enterprise intelligence layer — Work IQ, Fabric IQ, Foundry IQ, Web IQ — as a managed platform capability. This project asks: <strong>what does an IQ-inspired workflow look like built entirely from open-source substitutes</strong>, with no calls to those services at all, applied to a concrete task — turning spreadsheet formulas into business-readable documentation and migration drafts?</p>
+  <p class="callout">An independent experimental prototype, not an official Microsoft implementation, a financial calculation engine, or a production migration tool. Generated explanations, requirements, and code require human review.</p>
+  <div class="links">
+    <a class="btn primary" href="https://github.com/samguan2020/finance-excel-reverse-engineering" target="_blank" rel="noopener">Source on GitHub ↗</a>
+    <a class="btn" href="https://learn.microsoft.com/en-us/microsoft-iq/" target="_blank" rel="noopener">Microsoft IQ overview ↗</a>
+  </div>
+</header>
+
+<section id="map">
+  <div class="sec-head">
+    <div class="eyebrow">The replacement map</div>
+    <h2>Four managed capabilities, four open-source substitutes — with explicit boundaries</h2>
+  </div>
+  <p class="lede">The core of this project isn't the code, it's being precise about where the substitute stops. Every row below states what's actually implemented and names what it does <em>not</em> claim to replicate.</p>
+  <div class="map">
+    <table>
+      <thead><tr><th>Microsoft capability</th><th>Implementation here</th><th>Boundary of the replacement</th></tr></thead>
+      <tbody>
+        <tr><td class="layer">Foundry IQ<br>knowledge retrieval</td><td>ChromaDB + Sentence Transformers; a seeded finance glossary and workbook comments</td><td class="boundary">Local similarity search, not managed enterprise retrieval, source permissions, Purview enforcement, or guaranteed citations</td></tr>
+        <tr><td class="layer">Web IQ<br>web grounding</td><td><code>ddgs</code> search when local retrieval appears weak</td><td class="boundary">External search snippets, not Microsoft's Web IQ service, infrastructure, or full citation handling</td></tr>
+        <tr><td class="layer">Work IQ<br>collaboration context</td><td>OOXML author metadata, cell comments, optional local <code>git log</code></td><td class="boundary">File-local signals only; no Microsoft 365 mail, meeting, chat, or permission-aware retrieval</td></tr>
+        <tr><td class="layer">Fabric IQ<br>business data &amp; semantics</td><td><code>openpyxl</code> extraction, <code>formulas</code> reference parsing, a NetworkX dependency graph</td><td class="boundary">Workbook-scoped structure, not Fabric IQ, OneLake, an ontology, or a semantic model</td></tr>
+        <tr><td class="layer">Agent orchestration</td><td>LangGraph state graph</td><td class="boundary">A fixed, inspectable sequence, not a general enterprise agent platform</td></tr>
+        <tr><td class="layer">API &amp; Teams channel</td><td>FastAPI + the Microsoft Teams SDK for JS/TS</td><td class="boundary">An optional Teams front end, not a replacement for the Teams service</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="flow">
+  <div class="sec-head">
+    <div class="eyebrow">Processing flow</div>
+    <h2>From a workbook to a reviewed Markdown report</h2>
+  </div>
+  <p class="lede">Given an <code>.xlsx</code> workbook, the pipeline extracts structure, gathers local context, documents each sheet, and compiles the result — to a CLI file or a Teams Adaptive Card with consent-based upload.</p>
+  <div class="pipeline">
+    <div class="pipe"><h3>Extract</h3><p>Cells, formulas, references, and a dependency graph via <code>openpyxl</code> + <code>formulas</code> + NetworkX.</p></div>
+    <div class="pipe"><h3>Gather context</h3><p>Local glossary, workbook comments, author/collaboration metadata.</p></div>
+    <div class="pipe"><h3>Document per sheet</h3><p>Retrieve local context; fall back to a web query only when retrieval looks weak.</p></div>
+    <div class="pipe"><h3>Compile</h3><p>Dependency narrative, draft migration assets, and a Markdown report — CLI file or Teams card.</p></div>
+  </div>
+</section>
+
+<section id="honesty">
+  <div class="sec-head">
+    <div class="eyebrow">Engineering decisions</div>
+    <h2>Precision about the boundary is the actual deliverable</h2>
+  </div>
+  <div class="lessons">
+    <article class="lesson">
+      <div class="sym">Why reference-parsing over regex</div>
+      <p>The <code>formulas</code> parser expands supported ranges and understands cell references structurally. The graph records dependencies, not evaluated financial results — a dependency graph is not proof of computational equivalence.</p>
+    </article>
+    <article class="lesson">
+      <div class="sym">Why three swappable model backends</div>
+      <p>Ollama (local), an OpenAI-compatible endpoint, or Microsoft Foundry via <code>AnthropicFoundry</code> + <code>DefaultAzureCredential</code> — model choice and model licensing are kept separate from the open-source application libraries themselves.</p>
+    </article>
+    <article class="lesson">
+      <div class="sym">Why an async job API instead of a long-lived request</div>
+      <p>A sequence of model calls can take minutes. <code>POST /analyze</code> returns a job ID immediately; the client polls <code>GET /analyze/{job_id}</code> instead of holding one HTTP connection open.</p>
+    </article>
+    <article class="lesson">
+      <div class="sym">Why the Teams bot is optional</div>
+      <p>The Python CLI works without a Microsoft 365 tenant at all. The Teams SDK front end (<code>@microsoft/teams.apps</code>, pinned to 2.0.5) is an additive channel, not a dependency of the core pipeline.</p>
+    </article>
+  </div>
+</section>
+
+<section id="limits">
+  <div class="sec-head">
+    <div class="eyebrow">Limitations, stated up front</div>
+    <h2>What this does not claim</h2>
+  </div>
+  <div class="limits">
+    <div class="limit"><div class="dot"></div><p>Formula parsing is not complete Excel execution — macros, external references, and dynamic behavior need additional validation.</p></div>
+    <div class="limit"><div class="dot"></div><p>No per-user isolation or enterprise document-permission enforcement; <code>allowed_sources</code> is a metadata filter, not an authorization mechanism.</p></div>
+    <div class="limit"><div class="dot"></div><p>Search snippets ground generation, but source-linked citations in the report are not guaranteed.</p></div>
+    <div class="limit"><div class="dot"></div><p>The API job store and bot report cache are in-memory — restarting the process loses job state; this is not a durable queue.</p></div>
+    <div class="limit"><div class="dot"></div><p>Model-generated requirements and starter code are drafts — review and test before relying on them for financial decisions.</p></div>
+  </div>
+</section>
+
+<footer class="foot">
+  <span>Stack: Python · openpyxl · formulas · NetworkX · ChromaDB · Sentence Transformers · LangGraph · FastAPI · Ollama · TypeScript · Microsoft Teams SDK</span>
+  <span>Source: <a href="https://github.com/samguan2020/finance-excel-reverse-engineering" target="_blank" rel="noopener">github.com/samguan2020/finance-excel-reverse-engineering</a></span>
+</footer>
+
+</div>
+</body>
+</html>
