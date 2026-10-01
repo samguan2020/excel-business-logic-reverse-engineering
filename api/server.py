@@ -21,7 +21,7 @@ from pydantic import BaseModel
 
 from src.agent import build_graph
 
-app = FastAPI(title="Finance Excel Reverse Engineering API")
+app = FastAPI(title="Excel Business Logic Reverse Engineering API")
 
 
 class WorkbookSummary(BaseModel):

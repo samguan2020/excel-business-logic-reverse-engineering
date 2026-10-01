@@ -40,7 +40,7 @@ class ExtractRefsTests(unittest.TestCase):
 class ParseWorkbookTests(unittest.TestCase):
     def test_sample_summary_dependencies_are_expanded_without_phantom_nodes(self):
         with TemporaryDirectory() as temp_dir:
-            workbook_path = Path(temp_dir) / "finance_sample.xlsx"
+            workbook_path = Path(temp_dir) / "business_planning_sample.xlsx"
             workbook = openpyxl.Workbook()
             forecast = workbook.active
             forecast.title = "Forecast"

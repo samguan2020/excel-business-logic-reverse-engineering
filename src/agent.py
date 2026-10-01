@@ -1,12 +1,12 @@
 """
 agent.py
 ---------
-LangGraph-orchestrated finance workbook documentation pipeline using
+LangGraph-orchestrated workbook business-logic documentation pipeline using
 open-source components for selected Microsoft IQ-inspired roles.
 These are scoped substitutes, not implementations of Microsoft IQ:
 
     excel_parser   -> raw extraction + dependency graph
-    knowledge_base -> local RAG over a finance glossary and workbook comments
+    knowledge_base -> local RAG over a business-rules glossary and workbook comments
     work_context   -> local author/annotation/git signal
     web_grounding  -> web lookup when local retrieval is weak
     llm_client     -> pluggable LLM (Ollama by default, OpenAI-compatible optional)
@@ -43,7 +43,7 @@ class AgentState(TypedDict, total=False):
 
 
 SYSTEM_DOC_WRITER = (
-    "You are a senior financial-systems analyst reverse-engineering an Excel "
+    "You are a senior business-systems analyst reverse-engineering an Excel "
     "workbook for migration to an agentic AI system. Be precise, cite cell "
     "references, and flag anything ambiguous rather than guessing."
 )
@@ -170,7 +170,7 @@ def node_migration_assets(state: AgentState) -> AgentState:
 def node_compile_report(state: AgentState) -> AgentState:
     model = state["model"]
     parts = [
-        "# Finance Excel Reverse Engineering - Generated Report",
+        "# Excel Business Logic Reverse Engineering - Generated Report",
         "## Workbook Summary",
         summarize_workbook(model),
         "## Collaboration Context (Work-IQ equivalent)",

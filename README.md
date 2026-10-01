@@ -1,22 +1,22 @@
 ---
-title: Finance Excel Reverse Engineering
-description: An experimental Excel documentation pipeline using open-source substitutes for selected Microsoft IQ roles, with a Microsoft Teams SDK bot.
+title: Excel Business Logic Reverse Engineering
+description: An experimental, IQ-inspired Excel documentation pipeline built with open-source components and an optional Microsoft Teams SDK bot.
 ---
 
 ## Overview
 
-Finance Excel Reverse Engineering turns spreadsheet formulas and dependencies
+Excel Business Logic Reverse Engineering turns spreadsheet formulas and dependencies
 into business-readable documentation and draft migration assets. It combines a
 Python analysis pipeline with an optional TypeScript bot built using the
 Microsoft Teams SDK.
 
-The project explores how to implement an IQ-inspired workflow without calling
-Microsoft IQ services. Local retrieval, web search, collaboration metadata, and
-orchestration are implemented with open-source libraries. The backend can run
-with local model inference through Ollama or an optional hosted model.
+The project explores an IQ-inspired workflow without calling Microsoft IQ
+services. Local retrieval, web search, collaboration metadata, and orchestration
+are implemented with open-source libraries. The backend can run with local model
+inference through Ollama or an optional hosted model.
 
 This is an independent experimental prototype, not an official Microsoft
-implementation, a financial calculation engine, or a production migration tool.
+implementation, a calculation engine, or a production migration tool.
 Generated explanations, requirements, and code require human review.
 
 ## Showcase
@@ -42,7 +42,7 @@ actually implemented here.
 
 | Microsoft capability or application layer | Implementation in this project | Boundary of the replacement |
 |------------------------------------------|--------------------------------|-----------------------------|
-| Foundry IQ: knowledge retrieval | ChromaDB with Sentence Transformers embeddings; a seeded finance glossary and workbook comments | Local similarity search, not managed enterprise retrieval, source permissions, Purview enforcement, or guaranteed citations |
+| Foundry IQ: knowledge retrieval | ChromaDB with Sentence Transformers embeddings; a seeded business-rules glossary and workbook comments | Local similarity search, not managed enterprise retrieval, source permissions, Purview enforcement, or guaranteed citations |
 | Web IQ: web grounding | `ddgs` search when local retrieval appears weak | External search snippets, not Microsoft's Web IQ service, search infrastructure, reliability commitments, or full citation handling |
 | Work IQ: collaboration context | OOXML author metadata, cell comments, and optional local `git log` | File-local signals only; no Microsoft 365 mail, meeting, chat, organization, or permission-aware retrieval |
 | Fabric IQ: business data and semantics | `openpyxl` extraction, `formulas` reference parsing, and a NetworkX cell dependency graph | Workbook-scoped structure, not a Fabric IQ implementation, OneLake integration, ontology, or semantic model |
@@ -66,7 +66,7 @@ Given an `.xlsx` workbook, the pipeline produces one Markdown report containing:
 * Draft functional requirements and migration recommendations
 * Reusable prompt templates and starter Python scaffolding
 
-The sample generator creates fictional finance data across `Inputs`, `Forecast`,
+The sample generator creates fictional business-planning data across `Inputs`, `Plan`,
 and `Summary` worksheets. No customer workbook or historical report is required.
 The API also accepts `.xlsm` files; the pipeline does not execute VBA macros.
 
@@ -101,7 +101,7 @@ Compile Markdown report
 The implementation lives in [the LangGraph pipeline](src/agent.py).
 Reference extraction uses the `formulas` parser and expands supported ranges;
 it is not the older regex-only approach. The graph records dependencies, not
-evaluated financial results.
+evaluated calculation results.
 
 ## Open-source components and remaining service dependencies
 
@@ -173,7 +173,7 @@ Run from the project root:
 
 ```powershell
 .\.venv\Scripts\python.exe sample\make_sample.py
-.\.venv\Scripts\python.exe main.py sample\finance_sample.xlsx --out report.md
+.\.venv\Scripts\python.exe main.py sample\business_planning_sample.xlsx --out report.md
 ```
 
 The generator overwrites the synthetic sample workbook. Analysis invokes the
@@ -264,7 +264,7 @@ The Python CLI remains usable without the Teams bot or a Microsoft 365 tenant.
   controls, concurrency management, authentication, and operational monitoring
   need further work before production use.
 * Model-generated requirements and starter code are drafts. Review and test
-  calculations before relying on them for financial decisions or executing
+  calculations before relying on them for business decisions or executing
   generated code.
 
 ## Repository guide
@@ -273,7 +273,7 @@ The Python CLI remains usable without the Teams bot or a Microsoft 365 tenant.
 |----------|---------|
 | [main.py](main.py) | Command-line entry point |
 | [src/excel_parser.py](src/excel_parser.py) | Workbook extraction and dependency graph |
-| [src/knowledge_base.py](src/knowledge_base.py) | ChromaDB retrieval and finance glossary |
+| [src/knowledge_base.py](src/knowledge_base.py) | ChromaDB retrieval and business-rules glossary |
 | [src/web_grounding.py](src/web_grounding.py) | External search and retrieval-strength heuristic |
 | [src/work_context.py](src/work_context.py) | Workbook and local Git collaboration signals |
 | [src/llm_client.py](src/llm_client.py) | Local and hosted model adapters |

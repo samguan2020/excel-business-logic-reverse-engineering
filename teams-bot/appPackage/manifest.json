@@ -10,8 +10,8 @@
     "termsOfUseUrl": "${{TERMS_OF_USE_URL}}"
   },
   "name": {
-    "short": "Finance Workbook Analyst",
-    "full": "Finance Excel Reverse Engineering"
+    "short": "Workbook Logic Analyst",
+    "full": "Excel Business Logic Reverse Engineering"
   },
   "description": {
     "short": "Reverse-engineers Excel business logic into readable docs.",

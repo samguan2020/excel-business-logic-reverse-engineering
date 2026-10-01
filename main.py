@@ -2,7 +2,7 @@
 main.py — CLI entrypoint
 
 Usage:
-    python main.py sample/finance_sample.xlsx --out report.md
+    python main.py sample/business_planning_sample.xlsx --out report.md
 """
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ console = Console()
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Finance Excel Reverse Engineering (experimental prototype)")
+    parser = argparse.ArgumentParser(description="Excel Business Logic Reverse Engineering (experimental prototype)")
     parser.add_argument("workbook", help="Path to the .xlsx workbook to reverse-engineer")
     parser.add_argument("--out", default="report.md", help="Output markdown report path")
     args = parser.parse_args()

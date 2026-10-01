@@ -1,5 +1,5 @@
 /**
- * Teams bot front-end for finance workbook reverse engineering.
+ * Teams bot front-end for workbook business-logic reverse engineering.
  *
  * Flow:
  *   1. User uploads an .xlsx file to the bot in a Teams 1:1 chat.
@@ -249,5 +249,5 @@ function cryptoRandomId(): string {
 
 const port = Number(process.env.PORT ?? 3978);
 app.start(port).then(() => {
-  console.log(`Finance Workbook Analyst Teams bot listening on port ${port} 🚀`);
+  console.log(`Workbook Logic Analyst Teams bot listening on port ${port} 🚀`);
 });

@@ -1,10 +1,10 @@
-# Finance Workbook Analyst — Teams bot
+# Workbook Logic Analyst — Teams bot
 
 A TypeScript front-end for the parent project's Excel reverse-engineering
 pipeline. In a **personal (1:1) Teams chat**, upload an `.xlsx` workbook to
 receive a summary and choose whether to upload its markdown report to your
 OneDrive through Teams file consent. This is a prototype, not a production-ready
-financial reporting or migration system.
+calculation or migration system.
 
 ## What the bot actually does
 
@@ -92,7 +92,7 @@ behavior. For attachment transport, the included manual simulator serves a
 workbook and mock connector on ports 5679 and 5680:
 
 ```powershell
-npx --no-install tsx test\simulate-upload.ts ..\sample\finance_sample.xlsx
+npx --no-install tsx test\simulate-upload.ts ..\sample\business_planning_sample.xlsx
 ```
 
 Generate that synthetic workbook using the parent README first, or supply

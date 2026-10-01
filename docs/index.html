@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Finance Excel Reverse Engineering: an open-source substitute for selected Microsoft IQ capabilities, applied to spreadsheet documentation and migration drafting.">
-<title>Finance Excel Reverse Engineering Case Study</title>
+<meta name="description" content="Excel Business Logic Reverse Engineering: an IQ-inspired workflow built with open-source components for spreadsheet documentation and migration drafting.">
+<title>Excel Business Logic Reverse Engineering Case Study</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -96,9 +96,9 @@ td.boundary{color:var(--muted);font-size:13px}
 
 <header class="hero">
   <div class="eyebrow">Case study · Reverse-engineering an enterprise AI platform</div>
-  <h1>Finance Excel Reverse Engineering</h1>
+  <h1>Excel Business Logic Reverse Engineering</h1>
   <p class="thesis">Microsoft IQ describes an enterprise intelligence layer — Work IQ, Fabric IQ, Foundry IQ, Web IQ — as a managed platform capability. This project asks: <strong>what does an IQ-inspired workflow look like built entirely from open-source substitutes</strong>, with no calls to those services at all, applied to a concrete task — turning spreadsheet formulas into business-readable documentation and migration drafts?</p>
-  <p class="callout">An independent experimental prototype, not an official Microsoft implementation, a financial calculation engine, or a production migration tool. Generated explanations, requirements, and code require human review.</p>
+  <p class="callout">An independent experimental prototype built from public documentation and open-source components. It contains no customer data, customer code, or non-public Microsoft implementation details. It is not an official Microsoft implementation, a calculation engine, or a production migration tool. Generated explanations, requirements, and code require human review.</p>
   <div class="links">
     <a class="btn primary" href="https://github.com/samguan2020/finance-excel-reverse-engineering" target="_blank" rel="noopener">Source on GitHub ↗</a>
     <a class="btn" href="https://learn.microsoft.com/en-us/microsoft-iq/" target="_blank" rel="noopener">Microsoft IQ overview ↗</a>
@@ -115,7 +115,7 @@ td.boundary{color:var(--muted);font-size:13px}
     <table>
       <thead><tr><th>Microsoft capability</th><th>Implementation here</th><th>Boundary of the replacement</th></tr></thead>
       <tbody>
-        <tr><td class="layer">Foundry IQ<br>knowledge retrieval</td><td>ChromaDB + Sentence Transformers; a seeded finance glossary and workbook comments</td><td class="boundary">Local similarity search, not managed enterprise retrieval, source permissions, Purview enforcement, or guaranteed citations</td></tr>
+        <tr><td class="layer">Foundry IQ<br>knowledge retrieval</td><td>ChromaDB + Sentence Transformers; a seeded business-rules glossary and workbook comments</td><td class="boundary">Local similarity search, not managed enterprise retrieval, source permissions, Purview enforcement, or guaranteed citations</td></tr>
         <tr><td class="layer">Web IQ<br>web grounding</td><td><code>ddgs</code> search when local retrieval appears weak</td><td class="boundary">External search snippets, not Microsoft's Web IQ service, infrastructure, or full citation handling</td></tr>
         <tr><td class="layer">Work IQ<br>collaboration context</td><td>OOXML author metadata, cell comments, optional local <code>git log</code></td><td class="boundary">File-local signals only; no Microsoft 365 mail, meeting, chat, or permission-aware retrieval</td></tr>
         <tr><td class="layer">Fabric IQ<br>business data &amp; semantics</td><td><code>openpyxl</code> extraction, <code>formulas</code> reference parsing, a NetworkX dependency graph</td><td class="boundary">Workbook-scoped structure, not Fabric IQ, OneLake, an ontology, or a semantic model</td></tr>
@@ -148,7 +148,7 @@ td.boundary{color:var(--muted);font-size:13px}
   <div class="lessons">
     <article class="lesson">
       <div class="sym">Why reference-parsing over regex</div>
-      <p>The <code>formulas</code> parser expands supported ranges and understands cell references structurally. The graph records dependencies, not evaluated financial results — a dependency graph is not proof of computational equivalence.</p>
+      <p>The <code>formulas</code> parser expands supported ranges and understands cell references structurally. The graph records dependencies, not evaluated calculation results — a dependency graph is not proof of computational equivalence.</p>
     </article>
     <article class="lesson">
       <div class="sym">Why three swappable model backends</div>
@@ -175,7 +175,7 @@ td.boundary{color:var(--muted);font-size:13px}
     <div class="limit"><div class="dot"></div><p>No per-user isolation or enterprise document-permission enforcement; <code>allowed_sources</code> is a metadata filter, not an authorization mechanism.</p></div>
     <div class="limit"><div class="dot"></div><p>Search snippets ground generation, but source-linked citations in the report are not guaranteed.</p></div>
     <div class="limit"><div class="dot"></div><p>The API job store and bot report cache are in-memory — restarting the process loses job state; this is not a durable queue.</p></div>
-    <div class="limit"><div class="dot"></div><p>Model-generated requirements and starter code are drafts — review and test before relying on them for financial decisions.</p></div>
+    <div class="limit"><div class="dot"></div><p>Model-generated requirements and starter code are drafts — review and test before relying on them for business decisions.</p></div>
   </div>
 </section>
 

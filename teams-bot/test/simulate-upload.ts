@@ -86,7 +86,7 @@ async function main() {
     channelId: "test",
     from: { id: "sim-user-1", name: "Simulated User" },
     conversation: { id: "sim-convo-1", conversationType: "personal" },
-    recipient: { id: "sim-bot-1", name: "Finance Workbook Analyst" },
+    recipient: { id: "sim-bot-1", name: "Workbook Logic Analyst" },
     text: `Please analyze ${filename}`,
     attachments: [
       {
